@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Blog;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Blog::class, 'index']);
 
+//Show Create form
+Route::get('/Posts/create', [Blog::class, 'create']);
+
+//Store created Blog
+Route::post('/blog', [Blog::class, 'store']);
+
+//show edit form
+Route::get('/Posts{blog}/edit', [Blog::class, 'edit']);
+
+//Update Blog
+Route::put('/Posts{blog}', [Blog::class, 'update']);
+
+//Delete Blog
+Route::delete('/Posts{blog}', [Blog::class, 'destroy']);
+
+//Blog detail
+Route::get('/Posts{blog}', [Blog::class, 'detail']);
 
